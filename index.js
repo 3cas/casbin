@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from "firebase/database";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
+import { getDatabase, get, ref, set } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js'
 
 // Set the configuration for your app
 // TODO: Replace with your project's config object
@@ -16,4 +16,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Get a reference to the database service
-const database = getDatabase(app);
+const db = getDatabase(app);
+
+function createComment(pid, text) {
+    const db = getDatabase();
+    set(ref(db, "comments/" + pid + "/" + "1"), {
+        content: text,
+        timestamp: 0
+    });
+    return "left a comment";
+}
+
+function createPost(title, text, publicize) {
+    const db = getDatabase();
+    set(ref(db, "posts/" + "1"), {
+        title: text,
+        content: text,
+        timestamp: 0,
+        public: publicize
+    });
+    return "post created";
+}
+  
+function addQuick() {
+    return createPost("post", document.getElementById("postContentBox").value, true);
+}
