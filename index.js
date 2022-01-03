@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
-import { getDatabase, get, ref, set } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js'
+import { getDatabase, get, ref, set, push, query } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js'
 
 // Set the configuration for your app
 // TODO: Replace with your project's config object
@@ -16,28 +16,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Get a reference to the database service
-const db = getDatabase(app);
+const db = getDatabase();
 
 function createComment(pid, text) {
-    const db = getDatabase();
-    set(ref(db, "comments/" + pid + "/" + "1"), {
+    set(push(ref(db, "comments/" + pid)), {
         content: text,
         timestamp: 0
     });
     return "left a comment";
 }
 
-function createPost(title, text, publicize) {
-    const db = getDatabase();
-    set(ref(db, "posts/" + "1"), {
+function createPost(title, text, publicize, allowcom) {
+    set(push(ref(db, "posts")), {
         title: text,
         content: text,
         timestamp: 0,
-        public: publicize
+        public: publicize,
+        comments: allowcom,
     });
     return "post created";
 }
   
 function addQuick() {
-    return createPost("post", document.getElementById("postContentBox").value, true);
+    return createPost("post", document.getElementById("postContentBox").value, true, true);
+}
+
+function getPosts() {
+    var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"))
+    console.log(latestPosts)
 }
