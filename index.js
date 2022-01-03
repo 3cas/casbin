@@ -45,3 +45,8 @@ function getPosts() {
     var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"))
     console.log(latestPosts)
 }
+
+window.createComment() = createComment()
+window.createPost() = createPost()
+window.addQuick() = addQuick()
+window.getPosts() = getPosts()
