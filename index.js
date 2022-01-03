@@ -45,7 +45,6 @@ function addQuick() {
 
 function getPosts() {
     var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"), limitToLast(100))
-    latestPosts = latestPosts.get()
     console.log(latestPosts)
 }
 
