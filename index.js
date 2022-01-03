@@ -44,8 +44,8 @@ function addQuick() {
 }
 
 function getPosts() {
-    var latestPosts = ref(db, "posts/").orderByChild("timestamp").limitToLast(100).get()
-    console.log(latestPosts)
+    var latestPosts = ref(db, "posts/").orderByChild("timestamp").limitToLast(100).get();
+    console.log(latestPosts);
 }
 
 window.createComment = createComment
