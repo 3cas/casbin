@@ -46,7 +46,7 @@ function getPosts() {
     console.log(latestPosts)
 }
 
-window.createComment() = createComment()
-window.createPost() = createPost()
-window.addQuick() = addQuick()
-window.getPosts() = getPosts()
+window.createComment = createComment
+window.createPost = createPost
+window.addQuick = addQuick
+window.getPosts = getPosts
