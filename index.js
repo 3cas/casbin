@@ -42,7 +42,7 @@ function addQuick() {
 }
 
 function getPosts() {
-    var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"))
+    var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"), limitToLast(100)).get()
     console.log(latestPosts)
 }
 
