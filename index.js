@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
-import { getDatabase, get, ref, set, push, query } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js'
+import { getDatabase, get, ref, set, push, query, orderByChild } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js'
 
 // Set the configuration for your app
 // TODO: Replace with your project's config object
