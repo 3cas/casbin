@@ -19,18 +19,20 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
 function createComment(pid, text) {
+    var now = new Date()
     set(push(ref(db, "comments/" + pid)), {
         content: text,
-        timestamp: 0
+        timestamp: Date.parse(now),
     });
     return "left a comment";
 }
 
 function createPost(title, text, publicize, allowcom) {
+    var now = new Date()
     set(push(ref(db, "posts")), {
         title: text,
         content: text,
-        timestamp: 0,
+        timestamp: Date.parse(now),
         public: publicize,
         comments: allowcom,
     });
