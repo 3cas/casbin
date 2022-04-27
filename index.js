@@ -44,8 +44,15 @@ function addQuick() {
 }
 
 function getPosts() {
-    var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"), limitToLast(100)).get()
+    var latestPosts = query(db.ref("posts"), orderByChild("timestamp"), limitToLast(100)).get()
     console.log(latestPosts)
+
+    const ref = db.ref('posts');
+
+    ref.orderByChild('timestamp').limitToLast(10).on('child_added', (snapshot) => {
+        value = snapshot.val()
+        console.log("post id: "+snapshot.key+"\npost title: "+value.title+"\ncontent: "+value.content);
+    });
 }
 
 window.createComment = createComment
