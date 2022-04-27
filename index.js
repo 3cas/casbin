@@ -44,7 +44,7 @@ function addQuick() {
 }
 
 function getPosts() {
-    db.ref('posts').orderByChild('timestamp').limitToLast(10).on('child_added', (snapshot) => {
+    ref(db, 'posts').orderByChild('timestamp').limitToLast(10).on('child_added', (snapshot) => {
         value = snapshot.val()
         console.log("post id: "+snapshot.key+"\npost title: "+value.title+"\ncontent: "+value.content);
     });
