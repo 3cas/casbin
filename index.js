@@ -30,7 +30,7 @@ function createComment(pid, text) {
 function createPost(title, text, publicize, allowcom) {
     var now = new Date()
     set(push(ref(db, "posts")), {
-        title: text,
+        title: title,
         content: text,
         timestamp: Date.parse(now),
         public: publicize,
@@ -44,7 +44,7 @@ function addQuick() {
 }
 
 function getPosts() {
-    var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"), limitToLast(100))
+    var latestPosts = query(ref(db, "posts/"), orderByChild("timestamp"), limitToLast(100)).get()
     console.log(latestPosts)
 }
 
